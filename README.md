@@ -1,13 +1,15 @@
-# 🩺 Doctor Appointments Manager
+# 🩺 Doctor Appointments Manager (React + Vite + Express)
 
-A C# Windows Forms application 🖥️ designed to help clinics and medical offices efficiently schedule, track, and manage doctor appointments 📅.  
-Patients, doctors, and appointment details can be easily created, updated, and viewed through a user-friendly interface 🧑‍⚕️👩‍⚕️.
+A full-stack web application built with **React (Vite)** ⚛️ for the frontend and **Express.js** 🚀 for the backend, designed to manage and schedule doctor appointments easily 📅.
 
 ## ✨ Features
-- Add, edit, and delete patient appointments 🗂️
-- Assign doctors to appointments 🏥
-- View daily, weekly, and monthly appointment schedules 📆
-- Search and filter appointments by doctor or patient name 🔎
+- Create, update, and delete doctor and patient appointments 🖋️
+- View appointment schedules by day, week, or month 🗓️
+- Fast frontend with **Vite** ⚡ and robust backend with **Express.js** 🛠️
+- RESTful API for appointments management 🔗
+- Search and filter appointments 🔍
 
-## 🚀 Purpose
-This project aims to streamline the administrative workflow in medical environments, ensuring better time management and improved patient care ❤️.
+## 🛠️ Technologies
+- Frontend: React + Vite
+- Backend: Node.js + Express
+- Database: (your database here, e.g., MongoDB, PostgreSQL, etc.)
