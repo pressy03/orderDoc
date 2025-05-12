@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import { NavLink, Routes, Route, Navigate } from "react-router-dom";
+import DoctorsPage from "./pages/DoctorsPage";
+import PatientsPage from "./pages/PatientsPage";
+import AppointmentsPage from "./pages/AppointmentsPage";
+const linkClass="px-3 py-2 rounded hover:bg-gray-100";
+const active="font-semibold text-blue-600";
+export default function App(){
+  return(
+    <div className="min-h-screen">
+      <nav className="bg-white shadow">
+        <div className="max-w-4xl mx-auto flex gap-4 px-4">
+          <NavLink to="/doctors" className={({isActive})=>`${linkClass} ${isActive?active:"text-gray-600"}`}>Doctors</NavLink>
+          <NavLink to="/patients" className={({isActive})=>`${linkClass} ${isActive?active:"text-gray-600"}`}>Patients</NavLink>
+          <NavLink to="/appointments" className={({isActive})=>`${linkClass} ${isActive?active:"text-gray-600"}`}>Appointments</NavLink>
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Navigate to="/doctors"/>}/>
+        <Route path="/doctors" element={<DoctorsPage/>}/>
+        <Route path="/patients" element={<PatientsPage/>}/>
+        <Route path="/appointments" element={<AppointmentsPage/>}/>
+      </Routes>
+    </div>
+  );
 }
-
-export default App

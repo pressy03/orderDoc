@@ -1,25 +1,23 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "clinic-api",
+  "version": "1.1.0",
+  "main": "dist/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^4.18.2",
+    "mysql2": "^3.9.2",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
-    "@types/express": "^5.0.1",
-    "@types/node": "^22.14.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
-  },
-   "scripts": {
-    "dev": "node index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.15",
+    "@types/node": "^20.8.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.1"
   }
 }
