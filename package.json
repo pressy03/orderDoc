@@ -6,13 +6,13 @@
     "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
     "backend:dev": "npm --prefix backend run dev",
     "frontend:dev": "npm --prefix frontend run dev",
-
     "build": "npm run backend:build && npm run frontend:build",
     "backend:build": "npm --prefix backend run build",
     "frontend:build": "npm --prefix frontend run build",
-
     "start": "npm --prefix backend run start",
-    "postinstall": "npm i --prefix backend && npm i --prefix frontend"
+    "postinstall": "npm run install:backend && npm run install:frontend",
+    "install:backend": "cd backend && npm i",
+    "install:frontend": "cd frontend && npm i"
   },
   "dependencies": {
     "axios": "^1.7.0",
