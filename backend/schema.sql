@@ -1,24 +1,98 @@
-create database if not exists clinic;
-use clinic;
-create table if not exists doctors(
-  id int auto_increment primary key,
-  name varchar(100) not null,
-  specialty varchar(100) not null
-);
-create table if not exists patients(
-  id int auto_increment primary key,
-  name varchar(100) not null,
-  birthdate date not null
-);
-create table if not exists appointments(
-  id int auto_increment primary key,
-  patient_id int not null,
-  doctor_id int not null,
-  time datetime not null,
-  reason text not null,
-  foreign key(patient_id) references patients(id),
-  foreign key(doctor_id) references doctors(id)
-);
-insert into doctors(name,specialty) values ('Д-р Иван Иванов','Кардиология');
-insert into patients(name,birthdate) values ('Мария Петрова','1990-05-12');
-insert into appointments(patient_id,doctor_id,time,reason) values (1,1,now(),'Контролен преглед');
+CREATE DATABASE IF NOT EXISTS clinic
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+USE clinic;
+
+CREATE TABLE IF NOT EXISTS doctors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  specialty VARCHAR(100) NOT NULL
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS patients (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  birthdate DATE NOT NULL
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS appointments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  patient_id INT NOT NULL,
+  doctor_id INT NOT NULL,
+  time DATETIME NOT NULL,
+  reason TEXT NOT NULL,
+  FOREIGN KEY (patient_id) REFERENCES patients(id),
+  FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO doctors (name, specialty) VALUES
+  ('Д-р Иван Иванов',      'Кардиология'),
+  ('Д-р Елена Георгиева',   'Неврология'),
+  ('Д-р Петър Стоянов',     'Ортопедия'),
+  ('Д-р Анна Николова',     'Педиатрия'),
+  ('Д-р Георги Маринов',    'Дерматология'),
+  ('Д-р Виктор Василев',    'Офталмология'),
+  ('Д-р Борис Борисов',     'Урология'),
+  ('Д-р Красимир Христов',  'Гастроентерология'),
+  ('Д-р Йоана Димитрова',   'Ендокринология'),
+  ('Д-р Даниела Савова',    'Алергология'),
+  ('Д-р Калин Любенов',     'Ревматология'),
+  ('Д-р Ралица Тодорова',   'УНГ'),
+  ('Д-р Светослав Илиев',   'Нефрология'),
+  ('Д-р Нина Младенова',    'Пулмология'),
+  ('Д-р Христо Петров',     'Хематология'),
+  ('Д-р Мариана Симеонова', 'Онкология'),
+  ('Д-р Тони Тонев',        'Психиатрия'),
+  ('Д-р Любомир Колев',     'Неврохирургия'),
+  ('Д-р Живко Ангелов',     'Съдова хирургия'),
+  ('Д-р Силвия Алексиева',  'Акушерство и гинекология');
+
+INSERT INTO patients (name, birthdate) VALUES
+  ('Мария Петрова',        '1990-05-12'),
+  ('Иван Кирилов',         '1985-11-23'),
+  ('Десислава Иванова',    '1978-03-04'),
+  ('Николай Георгиев',     '2001-01-19'),
+  ('Елена Стоянова',       '1995-07-30'),
+  ('Георги Димитров',      '1982-09-14'),
+  ('Анна Христова',        '1972-02-28'),
+  ('Борис Николов',        '1968-12-05'),
+  ('Калина Василева',      '2004-04-21'),
+  ('Стефан Маринов',       '1999-06-10'),
+  ('Ралица Попова',        '1987-08-08'),
+  ('Тодор Ангелов',        '1975-10-27'),
+  ('Виктория Алексиева',   '1993-05-05'),
+  ('Христо Колчаков',      '1965-07-17'),
+  ('Нина Михайлова',       '2000-02-12'),
+  ('Петър Илиев',          '1989-11-01'),
+  ('Силвия Симеонова',     '1977-03-18'),
+  ('Красимир Лазаров',     '1998-09-09'),
+  ('Йоана Тонева',         '1992-01-07'),
+  ('Любен Жеков',          '1984-04-29');
+
+INSERT INTO appointments (patient_id, doctor_id, time, reason) VALUES
+  (1,  1,  '2025-07-20 08:00:00', 'Контролен преглед'),
+  (2,  3,  '2025-07-20 09:30:00', 'Болки в коляното'),
+  (3,  2,  '2025-07-20 10:00:00', 'Мигрена'),
+  (4,  4,  '2025-07-20 10:30:00', 'Ваксинация'),
+  (5,  5,  '2025-07-20 11:00:00', 'Кожен обрив'),
+  (6,  6,  '2025-07-20 11:30:00', 'Зрение – контрол'),
+  (7,  7,  '2025-07-20 12:00:00', 'Профилактика'),
+  (8,  8,  '2025-07-20 13:00:00', 'Стомашни болки'),
+  (9,  9,  '2025-07-20 13:30:00', 'Диабет – консултация'),
+  (10, 10, '2025-07-20 14:00:00', 'Алергичен тест'),
+  (11, 11, '2025-07-21 08:00:00', 'Болки в ставите'),
+  (12, 12, '2025-07-21 09:00:00', 'Проблеми със слуха'),
+  (13, 13, '2025-07-21 09:30:00', 'Бъбречна консултация'),
+  (14, 14, '2025-07-21 10:00:00', 'Кашлица и задух'),
+  (15, 15, '2025-07-21 10:30:00', 'Лабораторни резултати'),
+  (16, 16, '2025-07-21 11:00:00', 'Онко контрол'),
+  (17, 17, '2025-07-21 11:30:00', 'Психологична консултация'),
+  (18, 18, '2025-07-21 12:00:00', 'Следоперативен преглед'),
+  (19, 19, '2025-07-21 12:30:00', 'Съдово изследване'),
+  (20, 20, '2025-07-21 13:00:00', 'Профилактичен преглед');
