@@ -17,4 +17,9 @@ r.delete("/:id", async (req, res) => {
   await AppointmentService.remove(+req.params.id);
   res.sendStatus(204);
 });
+r.patch("/:id/finish", async (req, res) => {
+  await AppointmentService.finish(+req.params.id);
+  res.sendStatus(204);
+});
+
 export default r;

@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS appointments (
   doctor_id INT NOT NULL,
   time DATETIME NOT NULL,
   reason TEXT NOT NULL,
+  finished TINYINT(1) NOT NULL DEFAULT 0,
   FOREIGN KEY (patient_id) REFERENCES patients(id),
   FOREIGN KEY (doctor_id) REFERENCES doctors(id)
 ) ENGINE=InnoDB

@@ -2,8 +2,8 @@ import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import AppointmentForm from "../components/AppointmentForm";
 
-interface Doctor      { id: number; name: string }
-interface Patient     { id: number; name: string }
+interface Doctor { id: number; name: string }
+interface Patient { id: number; name: string }
 interface Appointment { id: number; patient_id: number; doctor_id: number; time: string; reason: string }
 
 export default function AppointmentsPage() {
@@ -92,21 +92,28 @@ export default function AppointmentsPage() {
       <ul className="space-y-2 mt-4">
         {sorted.map(a => (
           <li key={a.id}
-              className="bg-white p-3 rounded shadow flex justify-between items-center">
+            className="bg-white p-3 rounded shadow flex justify-between items-center">
             <span>
               {pName(a.patient_id)} ⇢ {dName(a.doctor_id)} –{" "}
               {formatDisplay(a.time)} – {a.reason}
             </span>
             <div className="flex gap-2">
               <button onClick={() => setEdit(a)}
-                      className="px-2 py-1 bg-yellow-500 text-white rounded">
+                className="px-2 py-1 bg-yellow-500 text-white rounded">
                 edit
               </button>
               <button onClick={() => del(a.id)}
-                      className="px-2 py-1 bg-red-600 text-white rounded">
+                className="px-2 py-1 bg-red-600 text-white rounded">
                 del
               </button>
+              <button onClick={() =>
+                axios.patch(`${api}/appointments/${a.id}/finish`).then(() => load())
+              }
+                className="px-2 py-1 bg-green-600 text-white rounded">
+                done
+              </button>
             </div>
+
           </li>
         ))}
       </ul>
