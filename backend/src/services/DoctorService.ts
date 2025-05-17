@@ -18,7 +18,7 @@ export class DoctorService {
   static async create(d: Doctor) {
     const [r]: any = await pool.query(
       "insert into doctors (name,specialty) values (?,?)",
-      [d.name, d.specialty]
+      [d.name, d.specialty],
     );
     return { ...d, id: r.insertId };
   }

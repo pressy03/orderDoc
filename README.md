@@ -4,8 +4,8 @@ This is a monorepo containing both the **backend API** and the **frontend SPA**.
 
 ## Prerequisites
 
-* Node.js v16+ and npm
-* MySQL (e.g., via XAMPP)
+- Node.js v16+ and npm
+- MySQL (e.g., via XAMPP)
 
 ## Setup
 
@@ -17,7 +17,7 @@ This is a monorepo containing both the **backend API** and the **frontend SPA**.
 
 2. **Database**
 
-   * Import the schema:
+   - Import the schema:
 
      ```sql
      -- in phpMyAdmin or MySQL CLI
@@ -32,8 +32,8 @@ Start both backend and frontend in parallel:
 npm run dev
 ```
 
-* **Backend**: [http://localhost:3001](http://localhost:3001)
-* **Frontend**: [http://localhost:5173](http://localhost:5173)
+- **Backend**: [http://localhost:3001](http://localhost:3001)
+- **Frontend**: [http://localhost:5173](http://localhost:5173)
 
 ## Project Structure
 
@@ -44,4 +44,5 @@ package.json    # root scripts and dependencies
 README.md       # this file
 ```
 
-Enjoy building and testing the Clinic App! Feel free to explore the code and make improvements.
+Enjoy building and testing the Clinic App! Feel free to explore the code and
+make improvements.
