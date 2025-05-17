@@ -11,14 +11,16 @@ export interface Appointment {
 
 export class AppointmentService {
   static async all() {
-    const [rows] = await pool.query("SELECT * FROM appointments WHERE finished = 0");
+    const [rows] = await pool.query(
+      "SELECT * FROM appointments WHERE finished = 0",
+    );
     return rows;
   }
 
   static async find(id: number) {
     const [rows]: any = await pool.query(
       "SELECT * FROM appointments WHERE id = ?",
-      [id]
+      [id],
     );
     return rows[0];
   }
@@ -26,7 +28,7 @@ export class AppointmentService {
   static async create(a: Appointment) {
     const [r]: any = await pool.query(
       "INSERT INTO appointments (patient_id, doctor_id, time, reason, finished) VALUES (?, ?, ?, ?, 0)",
-                                      [a.patient_id, a.doctor_id, a.time, a.reason]
+      [a.patient_id, a.doctor_id, a.time, a.reason],
     );
     return { ...a, id: r.insertId, finished: 0 };
   }
@@ -34,7 +36,7 @@ export class AppointmentService {
   static async update(id: number, a: Appointment) {
     await pool.query(
       "UPDATE appointments SET patient_id = ?, doctor_id = ?, time = ?, reason = ? WHERE id = ?",
-      [a.patient_id, a.doctor_id, a.time, a.reason, id]
+      [a.patient_id, a.doctor_id, a.time, a.reason, id],
     );
     return { ...a, id };
   }

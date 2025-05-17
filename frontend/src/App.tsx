@@ -1,5 +1,11 @@
-import { useState, createContext } from "react";
-import { NavLink, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { createContext, useState } from "react";
+import {
+  Navigate,
+  NavLink,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import DoctorsPage from "./pages/DoctorsPage";
 import PatientsPage from "./pages/PatientsPage";
 import AppointmentsPage from "./pages/AppointmentsPage";
@@ -28,30 +34,29 @@ export default function App() {
               <NavLink
                 to="/appointments"
                 className={({ isActive }) =>
-                  isActive ? "font-semibold" : "text-gray-500"
-                }
+                  isActive ? "font-semibold" : "text-gray-500"}
               >
                 Appointments
               </NavLink>
-              {role === "patient" ? (
-                <NavLink
-                  to="/patients"
-                  className={({ isActive }) =>
-                    isActive ? "font-semibold" : "text-gray-500"
-                  }
-                >
-                  Patients
-                </NavLink>
-              ) : (
-                <NavLink
-                  to="/doctors"
-                  className={({ isActive }) =>
-                    isActive ? "font-semibold" : "text-gray-500"
-                  }
-                >
-                  Doctors
-                </NavLink>
-              )}
+              {role === "patient"
+                ? (
+                  <NavLink
+                    to="/patients"
+                    className={({ isActive }) =>
+                      isActive ? "font-semibold" : "text-gray-500"}
+                  >
+                    Patients
+                  </NavLink>
+                )
+                : (
+                  <NavLink
+                    to="/doctors"
+                    className={({ isActive }) =>
+                      isActive ? "font-semibold" : "text-gray-500"}
+                  >
+                    Doctors
+                  </NavLink>
+                )}
             </div>
 
             <div className="flex gap-2">
