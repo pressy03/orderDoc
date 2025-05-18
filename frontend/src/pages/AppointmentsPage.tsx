@@ -1,10 +1,16 @@
-import { useEffect, useState, useMemo, useContext } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import AppointmentForm from "../components/AppointmentForm";
 import { RoleCtx } from "../App";
 
-interface Doctor { id: number; name: string }
-interface Patient { id: number; name: string }
+interface Doctor {
+  id: number;
+  name: string;
+}
+interface Patient {
+  id: number;
+  name: string;
+}
 interface Appointment {
   id: number;
   patient_id: number;
@@ -26,9 +32,9 @@ export default function AppointmentsPage() {
 
   const load = () =>
     Promise.all([
-      axios.get(`${api}/doctors`).then(r => setDocs(r.data)),
-      axios.get(`${api}/patients`).then(r => setPts(r.data)),
-      axios.get(`${api}/appointments`).then(r => setApps(r.data)),
+      axios.get(`${api}/doctors`).then((r) => setDocs(r.data)),
+      axios.get(`${api}/patients`).then((r) => setPts(r.data)),
+      axios.get(`${api}/appointments`).then((r) => setApps(r.data)),
     ]);
 
   useEffect(() => {
@@ -38,15 +44,15 @@ export default function AppointmentsPage() {
   const save = (a: Omit<Appointment, "id">) => {
     (edit
       ? axios.put(`${api}/appointments/${edit.id}`, a)
-      : axios.post(`${api}/appointments`, a)
-    ).then(() => load());
+      : axios.post(`${api}/appointments`, a)).then(() => load());
     setEdit(null);
   };
 
-  const del = (id: number) => axios.delete(`${api}/appointments/${id}`).then(() => load());
+  const del = (id: number) =>
+    axios.delete(`${api}/appointments/${id}`).then(() => load());
 
-  const dName = (id: number) => docs.find(d => d.id === id)?.name || "";
-  const pName = (id: number) => pts.find(p => p.id === id)?.name || "";
+  const dName = (id: number) => docs.find((d) => d.id === id)?.name || "";
+  const pName = (id: number) => pts.find((p) => p.id === id)?.name || "";
 
   const formatDisplay = (datetime: string) => {
     const [date, time] = datetime.split(" ");
@@ -56,10 +62,10 @@ export default function AppointmentsPage() {
 
   const filtered = useMemo(
     () =>
-      apps.filter(a =>
+      apps.filter((a) =>
         dName(a.doctor_id).toLowerCase().includes(query.toLowerCase().trim())
       ),
-    [apps, query, docs]
+    [apps, query, docs],
   );
 
   const sorted = useMemo(() => {
@@ -78,8 +84,10 @@ export default function AppointmentsPage() {
       <div className="flex gap-2 mb-4">
         <input
           value={query}
-          onChange={e => setQuery(e.target.value)}
-          placeholder={role === "patient" ? "Search doctor..." : "Search doctor..."}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={role === "patient"
+            ? "Search doctor..."
+            : "Search doctor..."}
           className="border p-2 rounded flex-1"
         />
         <button
@@ -91,27 +99,45 @@ export default function AppointmentsPage() {
         </button>
       </div>
       {role === "patient" && (
-        <AppointmentForm onSubmit={save} initial={edit} doctors={docs} patients={pts} />
+        <AppointmentForm
+          onSubmit={save}
+          initial={edit}
+          doctors={docs}
+          patients={pts}
+        />
       )}
       <ul className="space-y-2 mt-4">
-        {sorted.map(a => (
-          <li key={a.id} className="bg-white p-3 rounded shadow flex justify-between items-center">
+        {sorted.map((a) => (
+          <li
+            key={a.id}
+            className="bg-white p-3 rounded shadow flex justify-between items-center"
+          >
             <span>
-              {pName(a.patient_id)} ⇢ {dName(a.doctor_id)} – {formatDisplay(a.time)} – {a.reason}
+              {pName(a.patient_id)} ⇢ {dName(a.doctor_id)} –{" "}
+              {formatDisplay(a.time)} – {a.reason}
             </span>
             <div className="flex gap-2">
-              <button onClick={() => setEdit(a)} className="px-2 py-1 bg-yellow-500 text-white rounded">
+              <button
+                onClick={() => setEdit(a)}
+                className="px-2 py-1 bg-yellow-500 text-white rounded"
+              >
                 edit
               </button>
               {role === "doctor" && (
                 <button
-                  onClick={() => axios.patch(`${api}/appointments/${a.id}/finish`).then(() => load())}
+                  onClick={() =>
+                    axios.patch(`${api}/appointments/${a.id}/finish`).then(() =>
+                      load()
+                    )}
                   className="px-2 py-1 bg-green-600 text-white rounded"
                 >
                   done
                 </button>
               )}
-              <button onClick={() => del(a.id)} className="px-2 py-1 bg-red-600 text-white rounded">
+              <button
+                onClick={() => del(a.id)}
+                className="px-2 py-1 bg-red-600 text-white rounded"
+              >
                 del
               </button>
             </div>
