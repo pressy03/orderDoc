@@ -117,18 +117,19 @@ export default function AppointmentsPage() {
               {formatDisplay(a.time)} – {a.reason}
             </span>
             <div className="flex gap-2">
-              <button
-                onClick={() => setEdit(a)}
-                className="px-2 py-1 bg-yellow-500 text-white rounded"
-              >
-                edit
-              </button>
+              {role !== "doctor" && (
+                <button
+                  onClick={() => setEdit(a)}
+                  className="px-2 py-1 bg-yellow-500 text-white rounded"
+                >
+                  edit
+                </button>
+              )}
               {role === "doctor" && (
                 <button
                   onClick={() =>
-                    axios.patch(`${api}/appointments/${a.id}/finish`).then(() =>
-                      load()
-                    )}
+                    axios.patch(`${api}/appointments/${a.id}/finish`).then(() => load())
+                  }
                   className="px-2 py-1 bg-green-600 text-white rounded"
                 >
                   done
