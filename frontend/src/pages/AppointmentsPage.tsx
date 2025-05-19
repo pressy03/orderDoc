@@ -142,7 +142,6 @@ export default function AppointmentsPage() {
                 del
               </button>
             </div>
-
           </li>
         ))}
       </ul>
