@@ -124,7 +124,6 @@ export default function AppointmentsPage() {
               >
                 edit
               </button>
-
               )}
               {role === "doctor" && (
                 <button
