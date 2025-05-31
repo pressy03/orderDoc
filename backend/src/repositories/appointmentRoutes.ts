@@ -1,4 +1,3 @@
-// backend/src/routes/appointmentRoutes.ts
 import { Router } from "express";
 import { AppointmentRepository } from "../repositories/AppointmentRepository";
 

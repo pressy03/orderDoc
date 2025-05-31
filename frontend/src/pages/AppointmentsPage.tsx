@@ -117,12 +117,14 @@ export default function AppointmentsPage() {
               {formatDisplay(a.time)} – {a.reason}
             </span>
             <div className="flex gap-2">
-              <button
+              {role === "patient" && (
+                <button
                 onClick={() => setEdit(a)}
                 className="px-2 py-1 bg-yellow-500 text-white rounded"
               >
                 edit
               </button>
+              )}
               {role === "doctor" && (
                 <button
                   onClick={() =>
