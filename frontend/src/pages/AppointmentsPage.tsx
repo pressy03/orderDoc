@@ -124,13 +124,13 @@ export default function AppointmentsPage() {
               >
                 edit
               </button>
+
               )}
               {role === "doctor" && (
                 <button
                   onClick={() =>
-                    axios.patch(`${api}/appointments/${a.id}/finish`).then(() =>
-                      load()
-                    )}
+                    axios.patch(`${api}/appointments/${a.id}/finish`).then(() => load())
+                  }
                   className="px-2 py-1 bg-green-600 text-white rounded"
                 >
                   done
