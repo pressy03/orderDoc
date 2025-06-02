@@ -6,7 +6,7 @@ export interface Appointment {
   doctor_id: number;
   time: string;
   reason: string;
-  finished?: number;      // 0 | 1
+  finished?: number;
 }
 
 export class AppointmentRepository extends BaseRepository<Appointment> {
